@@ -24,14 +24,15 @@ class ViewController: UIViewController {
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
        
+        
         loadItems()
-        
-        
-        nameTextField.text =
-        phoneTextField.text =
+        nameLable.text = 
+        //phoneLable.text =
         
     }
 
