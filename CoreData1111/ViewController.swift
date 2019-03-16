@@ -32,8 +32,6 @@ class ViewController: UIViewController {
         loadItems()
         
     }
-    
-
 
     @IBAction func saveButtonPressed(_ sender: Any) {
         
@@ -64,8 +62,8 @@ class ViewController: UIViewController {
         let featchRequest: NSFetchRequest<User> = User.fetchRequest()
         
         do {
-            let searchResult = try context.fetch(featchRequest)
-            for item in searchResult as [NSManagedObject] {
+            itemArray = try context.fetch(featchRequest)
+            for item in itemArray as [NSManagedObject] {
                 let resultName = item.value(forKey: "name")
                 let resultPhone = item.value(forKey: "phone")
                 if resultName != nil, resultPhone != nil {
