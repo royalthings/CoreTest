@@ -63,7 +63,7 @@ class ViewController: UIViewController {
         
         do {
             itemArray = try context.fetch(featchRequest)
-            for item in itemArray as [NSManagedObject] {
+            for item in itemArray {
                 let resultName = item.value(forKey: "name")
                 let resultPhone = item.value(forKey: "phone")
                 if resultName != nil, resultPhone != nil {
