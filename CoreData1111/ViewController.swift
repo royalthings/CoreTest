@@ -28,13 +28,12 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
-        
+
         loadItems()
-        nameLable.text = 
-        //phoneLable.text =
         
     }
+    
+
 
     @IBAction func saveButtonPressed(_ sender: Any) {
         
@@ -46,7 +45,8 @@ class ViewController: UIViewController {
         itemArray.append(newItem)
         
         saveItems()
-
+        nameLable.text = nameTextField.text
+        phoneLable.text = phoneTextField.text
     }
     
     func saveItems() {
@@ -61,15 +61,26 @@ class ViewController: UIViewController {
     
     func loadItems() {
         
-        let request: NSFetchRequest<User> = User.fetchRequest()
+        let featchRequest: NSFetchRequest<User> = User.fetchRequest()
         
         do {
-            itemArray = try context.fetch(request)
+            let searchResult = try context.fetch(featchRequest)
+            for item in searchResult as [NSManagedObject] {
+                let resultName = item.value(forKey: "name")
+                let resultPhone = item.value(forKey: "phone")
+                if resultName != nil, resultPhone != nil {
+                    nameLable.text = resultName! as? String
+                    phoneLable.text = resultPhone! as? String
+                }
+
+            }
         } catch {
             print("Error featching data from context \(error)")
         }
         
     }
+    
+
     
 }
 
